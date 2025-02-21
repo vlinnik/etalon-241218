@@ -1,3 +1,34 @@
+# Проект АСУ БСУ ETALON-241218 (ИП-МИХАЙЛОВ)
+
+Проект автоматизации линии приготовления бетона для формования брусчатки
+
+- Логика управления написана для контроллера KRAX PLC-932
+- Визуализация написана на python+PyQt5, использует библиотеку concrete6 (C++, Qt5) в виде бинарника
+
+# Запуск
+
+## Зависимости
+
+AnyQt, PyQt5, pyplc, pysca. Также для запуска необходима скомпилированная библиотека libconcrete6, которая должна быть в
+каталоге plugins/SCADA/modules используемой Qt5 
+
+# Установка
+
+Если есть сборка pyinstaller то ее необходимо 
+
+- скопировать в /usr/local/ и выполнить 
+- скопировать .desktop в /usr/share/applications/ и выполнить
+
+```
+xdg-desktop-menu install --novendor --mode user /usr/share/applications/etalon-241218.desktop
+```
+
+Если запускаем из исходников, то
+
+```
+python3 <SOURCE_DIR_LOCATION>/__main__.py -w <SOURCE_DIR_LOCATION>
+```
+
 # Сборка pyinstaller
 
 ## Создание spec файла
@@ -28,6 +59,7 @@ datas = [ ('default.scada','.'),('ui','./ui'),('resources','./resources'),('SCAD
 binaries = [
     (os.path.join(QLibraryInfo.location(QLibraryInfo.LibraryLocation.PluginsPath), 'SCADA/modules', 'libconcrete6.so'), 'PyQt5/Qt5/plugins/SCADA/modules'),
     (os.path.join(QLibraryInfo.location(QLibraryInfo.LibraryLocation.PluginsPath), 'sqldrivers', 'libqsqlmysql.so'), 'PyQt5/Qt5/plugins/sqldrivers'),
+    (os.path.join(QLibraryInfo.location(QLibraryInfo.LibraryLocation.LibraryExecutablesPath), 'QtWebEngineProcess'), 'PyQt5/Qt5/libexec'),
 ]
 ```
 
