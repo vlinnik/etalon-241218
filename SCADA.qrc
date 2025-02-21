@@ -1,0 +1,40 @@
+<RCC>
+  <qresource prefix="/SCADA">
+    <file>resources/small-fillers-dosator.mng</file>
+    <file alias="right.png">resources/right.png</file>
+    <file alias="left.png">resources/left.png</file>
+    <file alias="rmgate.mng">resources/mixer-gate-rp.mng</file>
+    <file alias="tconveyor.mng">resources/tconveyor.mng</file>
+    <file alias="conveyor.mng">resources/conveyor.mng</file>
+    <file alias="dadditions.mng">resources/addition-dosator.mng</file>
+    <file alias="attention.png">resources/attention.png</file>
+    <file alias="lauger.mng">resources/auger.mng</file>
+    <file alias="rauger.mng">resources/rauger.mng</file>
+    <file alias="bell.png">resources/bell.png</file>
+    <file alias="bolt.png">resources/bolt.png</file>
+    <file alias="dcement.mng">resources/cement-dosator.mng</file>
+    <file alias="dcement.webp">resources/cement-dosator.webp</file>
+    <file alias="dcement.gif">resources/cement-dosator.gif</file>
+    <file alias="down.png">resources/down.png</file>
+    <file alias="fillers.mng">resources/fillers-container.mng</file>
+    <file>resources/fillers-container-l.mng</file>
+    <file>resources/fillers-container-r.mng</file>
+    <file alias="fillers-dosator.mng">resources/fillers-dosator.mng</file>
+    <file alias="fillers-rain.mng">resources/fillers-rain-s.mng</file>
+    <file alias="green.png">resources/green-led.png</file>
+    <file>resources/heart.png</file>
+    <file>resources/mixer-gate-l.mng</file>
+    <file alias="lmgate.mng">resources/mixer-gate-lp.mng</file>
+    <file alias="mixer.mng">resources/mixer-planar.mng</file>
+    <file alias="power.png">resources/power.png</file>
+    <file alias="pump.mng">resources/pump.mng</file>
+    <file alias="red.png">resources/red-led.png</file>
+    <file alias="silage-short.png">resources/silage-short.png</file>
+    <file alias="auto-mixer.png">resources/auto-mixer.png</file>
+    <file alias="stop.png">resources/stop.png</file>
+    <file alias="valve.mng">resources/valve.mng</file>
+    <file>resources/water-dosator.mng</file>
+    <file alias="water-rain.mng">resources/water-rain.mng</file>
+    <file>SCADA.ini</file>
+  </qresource>
+</RCC>

@@ -1,0 +1,2881 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Home</class>
+ <widget class="QWidget" name="Home">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1185</width>
+    <height>783</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>АСУ БСУ ETALON-241218 (c) ЭТАЛОН-КОМ </string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../SCADA.qrc">
+    <normaloff>:/SCADA/auto-mixer.png</normaloff>:/SCADA/auto-mixer.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#centralwidget,#Home
+{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(73, 73, 73, 255), stop:1 rgba(133, 133, 133, 255));
+}
+QAbstractButton:flat
+{
+	border: 1px solid gray;
+	border-radius: 4px;
+}
+QAbstractButton:flat:pressed
+{
+	background-color: green;
+}
+QAbstractButton:flat[style=&quot;open&quot;]
+{
+	image: url(:/SCADA/stop.png);
+}
+QAbstractButton:flat:pressed[style=&quot;open&quot;]
+{
+	image: url(:/SCADA/down.png);
+}
+QAbstractButton:flat:checked[style=&quot;open&quot;]
+{
+	image: url(:/SCADA/down.png);
+}
+QLabel[style=&quot;huge&quot;]
+{
+	font-size: 20pt;
+	font-weight: bold;
+	color: white;
+}
+QLabel[style=&quot;gigantic&quot;]
+{
+	font-size: 32pt;
+	font-weight: bold;
+	color: white;
+}
+
+QLabel[style=&quot;badge&quot;]
+{
+	border: 1px solid red;
+	background-color: rgba(0,0,0,100);
+	color: white;
+	border-radius: 4px;
+}
+QLabel[style=&quot;vodoley-status&quot;]
+{
+	border: none;
+	background-color: rgb(98, 160, 234);
+	color: white;
+	border-radius: 4px;
+	font-weight: bold;
+	font-size: 9pt;
+	padding: 8px;
+}
+#clock_1,#humidity_sp_1
+{
+	padding-left: 22px;
+}
+QLabel[style='hint']
+{
+	color: lightGray;
+	font-weight: bold;
+	font-size: 10pt;
+}
+QLabel[style='tips']
+{
+	color: lightGray;
+	font-size: 7pt;
+}
+QLabel[style='sys']
+{
+	color: yellow;
+	font-size: 7pt;
+}
+#vodoley_ctl
+{
+	background-color: rgb(94, 92, 100);
+	border: 1px solid gray;
+}</string>
+  </property>
+  <widget class="DosatorPanel" name="dpanel_0">
+   <property name="geometry">
+    <rect>
+     <x>526</x>
+     <y>230</y>
+     <width>120</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>ЦЕМЕНТ-1</string>
+   </property>
+  </widget>
+  <widget class="DosatorPanel" name="dpanel_1">
+   <property name="geometry">
+    <rect>
+     <x>746</x>
+     <y>230</y>
+     <width>120</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>ЦЕМЕНТ-2</string>
+   </property>
+  </widget>
+  <widget class="DosatorPanel" name="dpanel_2">
+   <property name="geometry">
+    <rect>
+     <x>884</x>
+     <y>230</y>
+     <width>120</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>ХД</string>
+   </property>
+   <property name="precision">
+    <number>3</number>
+   </property>
+  </widget>
+  <widget class="DosatorPanel" name="dpanel_3">
+   <property name="geometry">
+    <rect>
+     <x>1042</x>
+     <y>230</y>
+     <width>120</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>ВОДА</string>
+   </property>
+  </widget>
+  <widget class="DosatorPanel" name="dpanel_4">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>620</y>
+     <width>120</width>
+     <height>55</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>КОНВЕЙЕР</string>
+   </property>
+  </widget>
+  <widget class="MixerPanel" name="mixerpanel_0">
+   <property name="geometry">
+    <rect>
+     <x>661</x>
+     <y>620</y>
+     <width>272</width>
+     <height>71</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_0">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>10</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>СИЛОС-1</string>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_1">
+   <property name="geometry">
+    <rect>
+     <x>594</x>
+     <y>10</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>СИЛОС-2</string>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_2">
+   <property name="geometry">
+    <rect>
+     <x>743</x>
+     <y>10</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>СИЛОС-3</string>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_3">
+   <property name="geometry">
+    <rect>
+     <x>894</x>
+     <y>10</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>БАК ХД</string>
+   </property>
+   <property name="precision">
+    <number>3</number>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_4">
+   <property name="geometry">
+    <rect>
+     <x>1042</x>
+     <y>10</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>БАК ВОДЫ</string>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_5">
+   <property name="geometry">
+    <rect>
+     <x>15</x>
+     <y>382</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>БУНКЕР-1</string>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_6">
+   <property name="geometry">
+    <rect>
+     <x>156</x>
+     <y>382</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>БУНКЕР-2</string>
+   </property>
+  </widget>
+  <widget class="DoserPanel" name="cpanel_7">
+   <property name="geometry">
+    <rect>
+     <x>295</x>
+     <y>382</y>
+     <width>115</width>
+     <height>97</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>БУНКЕР-3</string>
+   </property>
+  </widget>
+  <widget class="Animation" name="dosator_0">
+   <property name="geometry">
+    <rect>
+     <x>529</x>
+     <y>210</y>
+     <width>113</width>
+     <height>238</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/dcement.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="dosator_1">
+   <property name="geometry">
+    <rect>
+     <x>749</x>
+     <y>210</y>
+     <width>113</width>
+     <height>238</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/dcement.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="dosator_2">
+   <property name="geometry">
+    <rect>
+     <x>904</x>
+     <y>210</y>
+     <width>86</width>
+     <height>131</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/dadditions.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_0">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>130</y>
+     <width>106</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/lauger.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_1">
+   <property name="geometry">
+    <rect>
+     <x>594</x>
+     <y>130</y>
+     <width>106</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/rauger.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_2">
+   <property name="geometry">
+    <rect>
+     <x>753</x>
+     <y>127</y>
+     <width>106</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/rauger.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_3">
+   <property name="geometry">
+    <rect>
+     <x>1078</x>
+     <y>170</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/valve.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_4">
+   <property name="geometry">
+    <rect>
+     <x>904</x>
+     <y>120</y>
+     <width>84</width>
+     <height>82</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/pump.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_5">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>462</y>
+     <width>146</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_6">
+   <property name="geometry">
+    <rect>
+     <x>140</x>
+     <y>462</y>
+     <width>146</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_7">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>462</y>
+     <width>146</width>
+     <height>126</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="mixer_0">
+   <property name="geometry">
+    <rect>
+     <x>671</x>
+     <y>460</y>
+     <width>247</width>
+     <height>175</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/mixer.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_8">
+   <property name="geometry">
+    <rect>
+     <x>626</x>
+     <y>561</y>
+     <width>114</width>
+     <height>137</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/lmgate.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="dosator_3">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>620</y>
+     <width>392</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/conveyor.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="tconveyor_0">
+   <property name="geometry">
+    <rect>
+     <x>601</x>
+     <y>700</y>
+     <width>392</width>
+     <height>54</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/conveyor.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mclosed_1">
+   <property name="geometry">
+    <rect>
+     <x>691</x>
+     <y>580</y>
+     <width>22</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../SCADA.qrc">:/SCADA/red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mclosed_2">
+   <property name="geometry">
+    <rect>
+     <x>721</x>
+     <y>580</y>
+     <width>22</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../SCADA.qrc">:/SCADA/green.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dopen_0">
+   <property name="geometry">
+    <rect>
+     <x>566</x>
+     <y>340</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dopen_1">
+   <property name="geometry">
+    <rect>
+     <x>786</x>
+     <y>340</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dopen_2">
+   <property name="geometry">
+    <rect>
+     <x>929</x>
+     <y>340</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dopen_3">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>630</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_0">
+   <property name="geometry">
+    <rect>
+     <x>506</x>
+     <y>135</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_1">
+   <property name="geometry">
+    <rect>
+     <x>626</x>
+     <y>135</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_2">
+   <property name="geometry">
+    <rect>
+     <x>789</x>
+     <y>135</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_3">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>135</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_4">
+   <property name="geometry">
+    <rect>
+     <x>930</x>
+     <y>135</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_5">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>542</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_6">
+   <property name="geometry">
+    <rect>
+     <x>194</x>
+     <y>542</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="open_7">
+   <property name="geometry">
+    <rect>
+     <x>334</x>
+     <y>542</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string notr="true">open</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dvibrator_0">
+   <property name="geometry">
+    <rect>
+     <x>566</x>
+     <y>290</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/power.png</normaloff>:/SCADA/power.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dvibrator_1">
+   <property name="geometry">
+    <rect>
+     <x>789</x>
+     <y>290</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/power.png</normaloff>:/SCADA/power.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="vibrator_0">
+   <property name="geometry">
+    <rect>
+     <x>52</x>
+     <y>492</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/power.png</normaloff>:/SCADA/power.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="vibrator_1">
+   <property name="geometry">
+    <rect>
+     <x>193</x>
+     <y>492</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/power.png</normaloff>:/SCADA/power.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="vibrator_2">
+   <property name="geometry">
+    <rect>
+     <x>334</x>
+     <y>492</y>
+     <width>38</width>
+     <height>34</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/power.png</normaloff>:/SCADA/power.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+   <property name="style" stdset="0">
+    <string/>
+   </property>
+  </widget>
+  <widget class="MContainerPanel" name="mcontainerpanel_0">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>430</y>
+     <width>204</width>
+     <height>93</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="TConveyorPanel" name="tconveyorpanel_0">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>600</y>
+     <width>204</width>
+     <height>92</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Animation" name="tconveyor_1">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>530</y>
+     <width>201</width>
+     <height>204</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/tconveyor.mng</string>
+    </url>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_0">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>379</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_1">
+   <property name="geometry">
+    <rect>
+     <x>790</x>
+     <y>378</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_2">
+   <property name="geometry">
+    <rect>
+     <x>933</x>
+     <y>336</y>
+     <width>32</width>
+     <height>95</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/water-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_3">
+   <property name="geometry">
+    <rect>
+     <x>1087</x>
+     <y>209</y>
+     <width>32</width>
+     <height>95</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/water-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_4">
+   <property name="geometry">
+    <rect>
+     <x>36</x>
+     <y>580</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_5">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>580</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_6">
+   <property name="geometry">
+    <rect>
+     <x>177</x>
+     <y>580</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_7">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>580</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_8">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>580</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="rain_9">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>580</y>
+     <width>30</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/fillers-rain.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Ceaseless</set>
+   </property>
+  </widget>
+  <widget class="Animation" name="container_9">
+   <property name="geometry">
+    <rect>
+     <x>852</x>
+     <y>560</y>
+     <width>114</width>
+     <height>137</height>
+    </rect>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/rmgate.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mclosed_3">
+   <property name="geometry">
+    <rect>
+     <x>881</x>
+     <y>580</y>
+     <width>22</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../SCADA.qrc">:/SCADA/red.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mclosed_4">
+   <property name="geometry">
+    <rect>
+     <x>851</x>
+     <y>580</y>
+     <width>22</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../SCADA.qrc">:/SCADA/green.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>641</x>
+     <y>460</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+	color: white;
+}
+QPushButton:flat::pressed
+{
+	background-color: rgba(224, 27, 36,150);
+}
+QPushButton:checked
+{
+	background-color: rgba(224, 27, 36,100);
+}</string>
+   </property>
+   <property name="text">
+    <string>НЕ ЗАГРУЖАТЬ</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_2">
+   <property name="geometry">
+    <rect>
+     <x>830</x>
+     <y>460</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton
+{
+	color: white;
+}
+QPushButton:flat::pressed
+{
+	background-color: rgba(224, 27, 36,150);
+}
+QPushButton:checked
+{
+	background-color: rgba(224, 27, 36,100);
+}</string>
+   </property>
+   <property name="text">
+    <string>НЕ НАБИРАТЬ</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="water_sp">
+   <property name="geometry">
+    <rect>
+     <x>753</x>
+     <y>406</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit
+{
+	padding: 4px;
+	border-radius: 4px;
+	border: 1px solid red;
+}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="placeholderText">
+    <string>воды</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="left">
+   <property name="geometry">
+    <rect>
+     <x>661</x>
+     <y>710</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../SCADA.qrc">:/SCADA/left.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="right">
+   <property name="geometry">
+    <rect>
+     <x>901</x>
+     <y>710</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="../SCADA.qrc">:/SCADA/right.png</pixmap>
+   </property>
+  </widget>
+  <widget class="QLabel" name="clock_0">
+   <property name="geometry">
+    <rect>
+     <x>741</x>
+     <y>564</y>
+     <width>111</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="style" stdset="0">
+    <string>huge</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="mixer_status">
+   <property name="geometry">
+    <rect>
+     <x>711</x>
+     <y>510</y>
+     <width>161</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>СОСТОЯНИЕ&lt;sup&gt;0/0&lt;/sup&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="style" stdset="0">
+    <string>badge</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="select_mixer">
+   <property name="geometry">
+    <rect>
+     <x>701</x>
+     <y>710</y>
+     <width>191</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::unchecked
+{
+	color: lightGray;
+}
+QCheckBox::checked
+{
+	color: yellow;
+}</string>
+   </property>
+   <property name="text">
+    <string>Выгрузка в авто-миксер</string>
+   </property>
+  </widget>
+  <widget class="TConveyorPanelEx" name="tconveyorpanelex">
+   <property name="geometry">
+    <rect>
+     <x>970</x>
+     <y>600</y>
+     <width>204</width>
+     <height>92</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="Animation" name="mcontainer_1">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>330</y>
+     <width>123</width>
+     <height>174</height>
+    </rect>
+   </property>
+   <property name="contextMenuPolicy">
+    <enum>Qt::CustomContextMenu</enum>
+   </property>
+   <property name="source">
+    <url>
+     <string>qrc:/SCADA/resources/small-fillers-dosator.mng</string>
+    </url>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Bounce</set>
+   </property>
+   <widget class="QPushButton" name="mc_vibrator_1">
+    <property name="geometry">
+     <rect>
+      <x>43</x>
+      <y>80</y>
+      <width>38</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../SCADA.qrc">
+      <normaloff>:/SCADA/power.png</normaloff>:/SCADA/power.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>24</width>
+      <height>24</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+    <property name="style" stdset="0">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="mcontainer_level_1">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>22</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="../SCADA.qrc">:/SCADA/red.png</pixmap>
+    </property>
+   </widget>
+  </widget>
+  <widget class="RuntimeTrend" name="rttrend_0">
+   <property name="geometry">
+    <rect>
+     <x>-4</x>
+     <y>70</y>
+     <width>471</width>
+     <height>311</height>
+    </rect>
+   </property>
+   <property name="canvasBackground">
+    <brush brushstyle="SolidPattern">
+     <color alpha="255">
+      <red>61</red>
+      <green>56</green>
+      <blue>70</blue>
+     </color>
+    </brush>
+   </property>
+   <property name="depth">
+    <number>1200</number>
+   </property>
+  </widget>
+  <widget class="QWidget" name="vodoley_sts" native="true">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>411</width>
+     <height>261</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout_3">
+    <item row="0" column="0" colspan="2" alignment="Qt::AlignTop">
+     <widget class="QLabel" name="humidity_sp_1">
+      <property name="text">
+       <string>000.00 %</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="style" stdset="0">
+       <string>huge</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" alignment="Qt::AlignBottom">
+     <widget class="QLabel" name="clock_1">
+      <property name="text">
+       <string>0000</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="style" stdset="0">
+       <string>huge</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3">
+     <widget class="QLabel" name="humidity_1">
+      <property name="text">
+       <string>00.00</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="style" stdset="0">
+       <string>gigantic</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2" alignment="Qt::AlignBottom">
+     <widget class="QLabel" name="vodoley_status">
+      <property name="text">
+       <string>ПОДКЛЮЧЕНИЕ...</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+      <property name="style" stdset="0">
+       <string>vodoley-status</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QFrame" name="vodoley_ctl">
+   <property name="geometry">
+    <rect>
+     <x>39</x>
+     <y>9</y>
+     <width>421</width>
+     <height>601</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <property name="sizeConstraint">
+     <enum>QLayout::SetFixedSize</enum>
+    </property>
+    <item alignment="Qt::AlignTop">
+     <widget class="QWidget" name="vodoley_main" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>400</width>
+        <height>0</height>
+       </size>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <property name="leftMargin">
+        <number>2</number>
+       </property>
+       <property name="topMargin">
+        <number>4</number>
+       </property>
+       <property name="rightMargin">
+        <number>2</number>
+       </property>
+       <property name="bottomMargin">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QCheckBox" name="more_humidity">
+         <property name="cursor">
+          <cursorShape>PointingHandCursor</cursorShape>
+         </property>
+         <property name="toolTip">
+          <string>Нажмите чтобы показать/скрыть настройки</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">#more_humidity
+{
+	color: lightGray;
+	font-size: 10pt;
+	font-weight: bold;
+	border: none;
+	background: none;
+}
+#more_humidity::indicator:unchecked 
+{
+	image: url(:/TConveyorPanel/more.png);
+	width: 24px;
+}
+#more_humidity::indicator:checked 
+{
+	image: url(:/TConveyorPanel/less.png);
+	width: 24px;
+}</string>
+         </property>
+         <property name="text">
+          <string>Влажность %</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QDoubleSpinBox" name="edt_humidity_sp_1">
+         <property name="toolTip">
+          <string>Влажность которую необходимо достигнуть</string>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="hint_3">
+         <property name="text">
+          <string>Скорость&lt;sub&gt;%&lt;/sub&gt;</string>
+         </property>
+         <property name="style" stdset="0">
+          <string>hint</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QSpinBox" name="edt_humidity_speed_1">
+         <property name="toolTip">
+          <string>Изменение интенсивности подачи воды (100 - интенсивно, 0 - осторожно)</string>
+         </property>
+         <property name="buttonSymbols">
+          <enum>QAbstractSpinBox::NoButtons</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="start">
+         <property name="toolTip">
+          <string>Запустить логику увлажнения</string>
+         </property>
+         <property name="text">
+          <string>ПУСК</string>
+         </property>
+         <property name="icon">
+          <iconset theme="media-playback-start">
+           <normaloff>../../../../.designer/backup</normaloff>../../../../.designer/backup</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="vodoley_settings" native="true">
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>1</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="row_1" native="true">
+         <layout class="QGridLayout" name="gridLayout">
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Режим работы</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_1">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Без датчика влажности - РАСХОД. Расчет после перемешивания и добавление за один заход - РАСЧЕТ. Последовательн добавлять до достижения цели - АВТОМАТ.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QComboBox" name="vodoley_mode">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <item>
+             <property name="text">
+              <string>РАСХОД</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>РАСЧЕТ</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>АВТОМАТ</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_2" native="true">
+         <layout class="QGridLayout" name="gridLayout_4">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Переход на точный режим</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Если текущая влажность находится дальше чем указано тут, то используюься параметры W&lt;sub&gt;0&lt;/sub&gt;/T&lt;sub&gt;0&lt;/sub&gt;. Иначе W&lt;sub&gt;1&lt;/sub&gt;/T&lt;sub&gt;1&lt;/sub&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QDoubleSpinBox" name="edt_humidity_wpp_2">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> %</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_3" native="true">
+         <layout class="QGridLayout" name="gridLayout_5">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_6">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Предварительно смешение</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_4">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Перед расчетом количества воды необходимо произвести смешение (для более точного определения начальной влажности)</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QSpinBox" name="premixT">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> сек</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_4" native="true">
+         <layout class="QGridLayout" name="gridLayout_6">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_7">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Окончательное смешение</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_5">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>После добавления расчитанного по датчику влажности количества воды можно дополнительно перемешать для стабилизации показаний.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QSpinBox" name="postmixT_2">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> сек</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_5" native="true">
+         <layout class="QGridLayout" name="gridLayout_7">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_8">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Воды&lt;sub&gt;л/%&lt;/sub&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_6">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Для расчетного режима используется для вычисления необходимого количества воды для достижения целевой влажности. Посмотреть рекомендуемуе значение можно наведением курсора мыши на поле.</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QDoubleSpinBox" name="edt_humidity_wpp_1">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> л/%</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_6" native="true">
+         <layout class="QGridLayout" name="gridLayout_8">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_9">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>T&lt;sub&gt;0&lt;/sub&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_7">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Для автоматического режима время между добавлением порций воды пока до задания БОЛЬШЕ чем параметр &lt;i&gt;ПЕРЕХОД НА ТОЧНЫЙ РЕЖИМ&lt;/i&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QSpinBox" name="postmixT_4">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> сек</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_7" native="true">
+         <layout class="QGridLayout" name="gridLayout_9">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_10">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>W&lt;sub&gt;0&lt;/sub&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_8">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Размер порции  воды в литрах пока до задания БОЛЬШЕ чем &lt;i&gt;ПЕРЕХОД НА ТОЧНЫЙ РЕЖИМ&lt;/i&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" rowspan="2">
+           <widget class="QSpinBox" name="edt_w_0">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>По сколько литров наливать в автоматическом режиме пока до задания далеко (больше чем параметр &lt;i&gt;ТОЧНО ЗА&lt;/i&gt;)</string>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> л</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_8" native="true">
+         <layout class="QGridLayout" name="gridLayout_10">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_11">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>T&lt;sub&gt;1&lt;/sub&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_9">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Для автоматического режима время между добавлением порций воды когда до задания МЕНЬШЕ чем параметр &lt;i&gt;ПЕРЕХОД НА ТОЧНЫЙ РЕЖИМ&lt;/i&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QSpinBox" name="postmixT_5">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> сек</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="row_9" native="true">
+         <layout class="QGridLayout" name="gridLayout_11">
+          <property name="leftMargin">
+           <number>1</number>
+          </property>
+          <property name="topMargin">
+           <number>1</number>
+          </property>
+          <property name="rightMargin">
+           <number>1</number>
+          </property>
+          <property name="bottomMargin">
+           <number>1</number>
+          </property>
+          <property name="horizontalSpacing">
+           <number>1</number>
+          </property>
+          <property name="verticalSpacing">
+           <number>0</number>
+          </property>
+          <item row="0" column="0" rowspan="2">
+           <widget class="QLabel" name="hint_12">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>W&lt;sub&gt;1&lt;/sub&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>hint</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="tip_10">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text">
+             <string>Размер порции  воды в литрах когда до задания МЕНЬШЕ чем &lt;i&gt;ПЕРЕХОД НА ТОЧНЫЙ РЕЖИМ&lt;/i&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+            <property name="style" stdset="0">
+             <string>tips</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" rowspan="3">
+           <widget class="QSpinBox" name="edt_w_1">
+            <property name="minimumSize">
+             <size>
+              <width>100</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="toolTip">
+             <string>По сколько литров наливать в автоматическом режиме когда задание уже близко (менее чем параметр &lt;i&gt;ТОЧНО ЗА&lt;/i&gt;)</string>
+            </property>
+            <property name="buttonSymbols">
+             <enum>QAbstractSpinBox::NoButtons</enum>
+            </property>
+            <property name="suffix">
+             <string> л</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QLabel" name="scantime">
+   <property name="geometry">
+    <rect>
+     <x>1100</x>
+     <y>740</y>
+     <width>66</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>000</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="style" stdset="0">
+    <string>sys</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="powered">
+   <property name="geometry">
+    <rect>
+     <x>1100</x>
+     <y>760</y>
+     <width>66</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>000</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="style" stdset="0">
+    <string>sys</string>
+   </property>
+  </widget>
+  <zorder>rttrend_0</zorder>
+  <zorder>vodoley_sts</zorder>
+  <zorder>mcontainer_1</zorder>
+  <zorder>container_9</zorder>
+  <zorder>rain_3</zorder>
+  <zorder>rain_2</zorder>
+  <zorder>tconveyor_1</zorder>
+  <zorder>dosator_3</zorder>
+  <zorder>container_8</zorder>
+  <zorder>mixer_0</zorder>
+  <zorder>container_5</zorder>
+  <zorder>dosator_2</zorder>
+  <zorder>dosator_1</zorder>
+  <zorder>dosator_0</zorder>
+  <zorder>dpanel_0</zorder>
+  <zorder>dpanel_1</zorder>
+  <zorder>dpanel_2</zorder>
+  <zorder>dpanel_3</zorder>
+  <zorder>dpanel_4</zorder>
+  <zorder>mixerpanel_0</zorder>
+  <zorder>cpanel_0</zorder>
+  <zorder>cpanel_1</zorder>
+  <zorder>cpanel_2</zorder>
+  <zorder>cpanel_3</zorder>
+  <zorder>cpanel_4</zorder>
+  <zorder>container_0</zorder>
+  <zorder>container_1</zorder>
+  <zorder>container_2</zorder>
+  <zorder>container_3</zorder>
+  <zorder>container_4</zorder>
+  <zorder>container_6</zorder>
+  <zorder>container_7</zorder>
+  <zorder>cpanel_7</zorder>
+  <zorder>cpanel_6</zorder>
+  <zorder>cpanel_5</zorder>
+  <zorder>tconveyor_0</zorder>
+  <zorder>mclosed_1</zorder>
+  <zorder>mclosed_2</zorder>
+  <zorder>dopen_0</zorder>
+  <zorder>dopen_1</zorder>
+  <zorder>dopen_2</zorder>
+  <zorder>dopen_3</zorder>
+  <zorder>open_0</zorder>
+  <zorder>open_1</zorder>
+  <zorder>open_2</zorder>
+  <zorder>open_3</zorder>
+  <zorder>open_4</zorder>
+  <zorder>open_5</zorder>
+  <zorder>open_6</zorder>
+  <zorder>open_7</zorder>
+  <zorder>dvibrator_0</zorder>
+  <zorder>dvibrator_1</zorder>
+  <zorder>vibrator_0</zorder>
+  <zorder>vibrator_1</zorder>
+  <zorder>vibrator_2</zorder>
+  <zorder>mcontainerpanel_0</zorder>
+  <zorder>tconveyorpanel_0</zorder>
+  <zorder>rain_0</zorder>
+  <zorder>rain_1</zorder>
+  <zorder>rain_4</zorder>
+  <zorder>rain_5</zorder>
+  <zorder>rain_6</zorder>
+  <zorder>rain_7</zorder>
+  <zorder>rain_8</zorder>
+  <zorder>rain_9</zorder>
+  <zorder>mclosed_3</zorder>
+  <zorder>mclosed_4</zorder>
+  <zorder>pushButton</zorder>
+  <zorder>pushButton_2</zorder>
+  <zorder>water_sp</zorder>
+  <zorder>left</zorder>
+  <zorder>right</zorder>
+  <zorder>clock_0</zorder>
+  <zorder>mixer_status</zorder>
+  <zorder>select_mixer</zorder>
+  <zorder>tconveyorpanelex</zorder>
+  <zorder>vodoley_ctl</zorder>
+  <zorder>scantime</zorder>
+  <zorder>powered</zorder>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TConveyorPanelEx</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui.tconveyorpanelex</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TConveyorPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui.tconveyorpanel</header>
+  </customwidget>
+  <customwidget>
+   <class>DosatorPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui.dosatorpanel</header>
+  </customwidget>
+  <customwidget>
+   <class>DoserPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui.doserpanel</header>
+  </customwidget>
+  <customwidget>
+   <class>MixerPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui.mixerpanel</header>
+  </customwidget>
+  <customwidget>
+   <class>Animation</class>
+   <extends>QLabel</extends>
+   <header>animation</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>RuntimeTrend</class>
+   <extends>QFrame</extends>
+   <header>runtimetrend</header>
+  </customwidget>
+  <customwidget>
+   <class>MContainerPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui/mcontainerpanel.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="../SCADA.qrc"/>
+  <include location="../SCADA.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>more_humidity</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>vodoley_settings</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>237</x>
+     <y>609</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>240</x>
+     <y>673</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

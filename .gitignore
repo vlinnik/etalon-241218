@@ -1,0 +1,10 @@
+test.py
+backup
+__pycache__
+build
+dist
+*.rcc
+tconveyorpanelexplugin.py
+persist.dat
+persist.json
+concrete6.dat

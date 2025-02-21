@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Extensions</class>
+ <widget class="QWidget" name="Extensions">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>864</width>
+    <height>103</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Дополнительно</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QCheckBox" name="vibrator_auto_0">
+     <property name="toolTip">
+      <string>Автоматически включать вибратор</string>
+     </property>
+     <property name="text">
+      <string>ВИ-1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QCheckBox" name="vibrator_auto_2">
+     <property name="toolTip">
+      <string>Автоматически включать вибратор</string>
+     </property>
+     <property name="text">
+      <string>ВИ-3</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QCheckBox" name="vibrator_auto_1">
+     <property name="toolTip">
+      <string>Автоматически включать вибратор</string>
+     </property>
+     <property name="text">
+      <string>ВИ-2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QCheckBox" name="dvibrator_auto_2">
+     <property name="toolTip">
+      <string>Автоматически включать вибратор</string>
+     </property>
+     <property name="text">
+      <string>ВДЦ-2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QCheckBox" name="dvibrator_auto_1">
+     <property name="toolTip">
+      <string>Автоматически включать вибратор</string>
+     </property>
+     <property name="text">
+      <string>ВДЦ-1</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3" rowspan="2">
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>Затвор СМ</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QLabel" name="hint_1">
+        <property name="text">
+         <string>Открывать</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="cnt_0">
+        <property name="specialValueText">
+         <string>СРАЗУ</string>
+        </property>
+        <property name="suffix">
+         <string> раз</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="hint_2">
+        <property name="text">
+         <string>Длительность</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="dr_1">
+        <property name="specialValueText">
+         <string>ОТКЛ</string>
+        </property>
+        <property name="suffix">
+         <string> мсек</string>
+        </property>
+        <property name="maximum">
+         <number>10000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="hint_3">
+        <property name="text">
+         <string>Остановка</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="middle_t_2">
+        <property name="specialValueText">
+         <string>ОТКЛ</string>
+        </property>
+        <property name="suffix">
+         <string> мсек</string>
+        </property>
+        <property name="maximum">
+         <number>100000</number>
+        </property>
+        <property name="singleStep">
+         <number>100</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
