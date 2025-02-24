@@ -43,7 +43,7 @@ pysca.object(concrete6.instance)
 
 navbar.instance.show( )
         
-dev = PYPLC('192.168.4.1')
+dev = PYPLC('192.168.2.10')
 pysca.devices['${PLC}'] = dev
 dev.start(100)
 
