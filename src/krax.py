@@ -93,7 +93,7 @@ factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additi
 factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1] ]
 instances = [plc_prg,motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2]
 
-if sys.platform=='linux' or True:
+if sys.platform=='linux':
   if sys.platform=='linux':
     import argparse
     args = argparse.ArgumentParser(sys.argv)
