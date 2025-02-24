@@ -346,6 +346,35 @@ QLabel[style='sys']
    <property name="playbackHints">
     <set>Animation::Bounce</set>
    </property>
+   <widget class="QPushButton" name="ack_3">
+    <property name="geometry">
+     <rect>
+      <x>19</x>
+      <y>71</y>
+      <width>54</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Отклонение от дозы требует подтверждения</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../SCADA.qrc">
+      <normaloff>:/SCADA/attention.png</normaloff>:/SCADA/attention.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="Animation" name="container_0">
    <property name="geometry">
@@ -556,6 +585,35 @@ QLabel[style='sys']
      <string>qrc:/SCADA/conveyor.mng</string>
     </url>
    </property>
+   <widget class="QPushButton" name="ack_4">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>54</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Отклонение от дозы требует подтверждения</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset resource="../SCADA.qrc">
+      <normaloff>:/SCADA/attention.png</normaloff>:/SCADA/attention.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>48</width>
+      <height>48</height>
+     </size>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="Animation" name="tconveyor_0">
    <property name="geometry">
@@ -1194,7 +1252,7 @@ QLabel[style='sys']
      <x>410</x>
      <y>600</y>
      <width>204</width>
-     <height>92</height>
+     <height>93</height>
     </rect>
    </property>
   </widget>
@@ -1641,7 +1699,7 @@ QCheckBox::checked
      <x>970</x>
      <y>600</y>
      <width>204</width>
-     <height>92</height>
+     <height>93</height>
     </rect>
    </property>
   </widget>
@@ -1729,6 +1787,9 @@ QCheckBox::checked
      <height>311</height>
     </rect>
    </property>
+   <property name="depth">
+    <number>1200</number>
+   </property>
    <property name="canvasBackground">
     <brush brushstyle="SolidPattern">
      <color alpha="255">
@@ -1737,9 +1798,6 @@ QCheckBox::checked
       <blue>70</blue>
      </color>
     </brush>
-   </property>
-   <property name="depth">
-    <number>1200</number>
    </property>
   </widget>
   <widget class="QWidget" name="vodoley_sts" native="true">
@@ -2731,6 +2789,64 @@ QCheckBox::checked
     <string>sys</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="ack_1">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>285</y>
+     <width>54</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Отклонение от дозы требует подтверждения</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/attention.png</normaloff>:/SCADA/attention.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ack_2">
+   <property name="geometry">
+    <rect>
+     <x>781</x>
+     <y>285</y>
+     <width>54</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Отклонение от дозы требует подтверждения</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset resource="../SCADA.qrc">
+     <normaloff>:/SCADA/attention.png</normaloff>:/SCADA/attention.png</iconset>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>48</width>
+     <height>48</height>
+    </size>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
+   </property>
+  </widget>
   <zorder>rttrend_0</zorder>
   <zorder>vodoley_sts</zorder>
   <zorder>mcontainer_1</zorder>
@@ -2810,33 +2926,41 @@ QCheckBox::checked
   <zorder>vodoley_ctl</zorder>
   <zorder>scantime</zorder>
   <zorder>powered</zorder>
+  <zorder>ack_1</zorder>
+  <zorder>ack_2</zorder>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>DosatorPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui/dosatorpanel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>DoserPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui/doserpanel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MixerPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui/mixerpanel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TConveyorPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui/tconveyorpanel.h</header>
+  </customwidget>
+  <customwidget>
+   <class>MContainerPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui/mcontainerpanel.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>TConveyorPanelEx</class>
    <extends>QGroupBox</extends>
    <header>concreteui.tconveyorpanelex</header>
    <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>TConveyorPanel</class>
-   <extends>QGroupBox</extends>
-   <header>concreteui.tconveyorpanel</header>
-  </customwidget>
-  <customwidget>
-   <class>DosatorPanel</class>
-   <extends>QGroupBox</extends>
-   <header>concreteui.dosatorpanel</header>
-  </customwidget>
-  <customwidget>
-   <class>DoserPanel</class>
-   <extends>QGroupBox</extends>
-   <header>concreteui.doserpanel</header>
-  </customwidget>
-  <customwidget>
-   <class>MixerPanel</class>
-   <extends>QGroupBox</extends>
-   <header>concreteui.mixerpanel</header>
   </customwidget>
   <customwidget>
    <class>Animation</class>
@@ -2846,14 +2970,8 @@ QCheckBox::checked
   </customwidget>
   <customwidget>
    <class>RuntimeTrend</class>
-   <extends>QFrame</extends>
+   <extends>QWidget</extends>
    <header>runtimetrend</header>
-  </customwidget>
-  <customwidget>
-   <class>MContainerPanel</class>
-   <extends>QGroupBox</extends>
-   <header>concreteui/mcontainerpanel.h</header>
-   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

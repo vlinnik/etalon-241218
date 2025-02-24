@@ -23,6 +23,7 @@ class _Proxy():
             self._instance = plugin.instance( )
             self._instance.reload( )
             self._instance.changed.connect(self._on_changed)
+            self._instance.setProperty('defaults',False)
 
         plugin.deleteLater( )
 
