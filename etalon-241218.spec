@@ -11,7 +11,7 @@ binaries = [
 ]
 
 a = Analysis(
-    ['__main__.py'],
+    ['gui/__main__.py'],
     pathex=[],
     binaries=binaries,
     datas=datas,

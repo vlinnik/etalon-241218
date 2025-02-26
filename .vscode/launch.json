@@ -19,8 +19,8 @@
             "name": "Python Debugger: Module",
             "type": "debugpy",
             "request": "launch",
-            "module": "ETALON-241218",
-            "cwd": "${workspaceFolder}/..",
+            "module": "gui",
+            "cwd": "${workspaceFolder}",
             "env": {
                 "PYTHONPYCACHEPREFIX": "${workspaceFolder}/__pycache__"
             },
