@@ -7,6 +7,7 @@ from concrete.dosator import ManualDosator
 from concrete.vibrator import Vibrator,UnloadHelper
 from concrete.vodoley import Vodoley
 from pyplc.utils.misc import BLINK
+from pyplc.utils.latch import RS
 import sys
 
 print(f'Запуск проекта {project_name}')
@@ -43,9 +44,9 @@ fillers_m_1 = Weight( raw = plc.CONVEYOR_M_1, mmax = 8000)
 filler_1 = Container(m = lambda:  fillers_m_1.m, out = plc.FILLER_OPEN_1, closed=plc.FILLER_CLOSED_1, lock = Lock(key=lambda: not plc.FILLER_CLOSED_2 or not plc.FILLER_CLOSED_3 or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
 filler_2 = Container(m = lambda:  fillers_m_1.m, out = plc.FILLER_OPEN_2, closed=plc.FILLER_CLOSED_2, lock = Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_3 or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
 filler_3 = Container(m = lambda:  fillers_m_1.m, out = plc.FILLER_OPEN_3, closed=plc.FILLER_CLOSED_3, lock = Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_2 or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
-vibrator_1 = Vibrator( q = plc.VIBRATOR_ON_1, containers = [filler_1], weight=fillers_m_1)
-vibrator_2 = Vibrator( q = plc.VIBRATOR_ON_2, containers = [filler_2], weight=fillers_m_1)
-vibrator_3 = Vibrator( q = plc.VIBRATOR_ON_3, containers = [filler_3], weight=fillers_m_1)
+vibrator_1 = Vibrator( q = plc.VIBRATOR_ON_1, containers = [plc.FILLER_OPEN_1], weight=fillers_m_1)
+vibrator_2 = Vibrator( q = plc.VIBRATOR_ON_2, containers = [plc.FILLER_OPEN_2], weight=fillers_m_1)
+vibrator_3 = Vibrator( q = plc.VIBRATOR_ON_3, containers = [plc.FILLER_OPEN_3], weight=fillers_m_1)
 
 tconveyor_1 = Transport( ison = plc.TCONVEYOR_ISON_1, power = plc.TCONVEYOR_ON_1, out=plc.CONVEYOR_ON_1 )
 conveyor_1 = Dosator( m= lambda: fillers_m_1.m, closed = ~plc.CONVEYOR_ON_1, out = tconveyor_1.set_auto, containers=[filler_1,filler_2,filler_3],lock=Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_2 or not plc.FILLER_CLOSED_3) )
@@ -56,6 +57,11 @@ gate_1 = MSGate( closed=plc.MIXER_CLOSED_1, opened=plc.MIXER_OPENED_1)
 gate_2 = MPGate( closed=plc.MIXER_CLOSED_2, opened=plc.MIXER_OPENED_2,close=plc.MIXER_CLOSE_2)
 gates = GRGate(gates=[gate_1,gate_2])
 mixer_1 = Mixer(gate = gates ,motor=motor_1, flows=[ c.q for c in [silage_1,silage_2,silage_3,water_1,addition_1]] + [e.q for e in mcontainer_1.expenses])
+
+def toggle_breakpoint(x:bool):
+  mixer_1.breakpoint = x
+  
+forbid_1 = RS(set = plc.ALLOW_UNLOAD_1,reset=~plc.ALLOW_UNLOAD_1,q = toggle_breakpoint )
 
 water_1.install_counter( lambda: mixer_1.qreset )
 loaded_2 = Loaded([cement_1,cement_2,additions_1,mcontainer_1])
@@ -97,7 +103,7 @@ manager_1 = Manager(collected=ready_1,loaded = loaded_1, mixer = mixer_1, dosato
 
 factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additions_1,mcontainer_1,conveyor_1,water_1]]
 factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ]
-instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2,aerator_1,aerator_2,aerator_3]
+instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2,aerator_1,aerator_2,aerator_3,forbid_1]
 
 if sys.platform=='linux':
   if sys.platform=='linux':
@@ -140,5 +146,5 @@ if sys.platform=='linux':
   imitations = [ imotor_1,idcement_1,idcement_2,idadditions_1,iauger_1,iauger_2,iauger_3,iapump_1,iconveyor_1,itconveyor_1,ifiller_1,ifiller_2,ifiller_3,igate_1,igate_2,icement_m_1,icement_m_2,iadditions_m_1,ifillers_m_1,iwater_q_1,ifconveyor_2,irconveyor_2,imcontainer_1,ihumidity_1 ]
   instances += imitations 
 
-plc.config( ctx=globals() )
+# plc.config( ctx=globals() )
 plc.run( instances= instances, ctx=globals() )
