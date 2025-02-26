@@ -6,6 +6,7 @@ from concrete.msgate import MPGate,GRGate
 from concrete.dosator import ManualDosator
 from concrete.vibrator import Vibrator,UnloadHelper
 from concrete.vodoley import Vodoley
+from pyplc.utils.misc import BLINK
 import sys
 
 print(f'Запуск проекта {project_name}')
@@ -21,6 +22,10 @@ silage_1 = Container( m = lambda: cement_m_1.m, out = plc.AUGER_ON_1, closed = ~
 silage_2 = Container( m =lambda: cement_m_1.m, out = plc.AUGER_ON_2, closed = ~plc.AUGER_ON_2,max_sp=1000,lock=Lock(key=lambda: not plc.DCEMENT_CLOSED_1 or plc.AUGER_ON_1))
 cement_1 = Dosator( m = lambda: cement_m_1.m, closed = plc.DCEMENT_CLOSED_1, out = plc.DCEMENT_OPEN_1, containers=[silage_1,silage_2],lock=Lock(key=lambda: plc.AUGER_ON_1 or plc.AUGER_ON_2 ) )
 dc_vibrator_1 = UnloadHelper( q = plc.DC_VIBRATOR_ON_1,dosator=cement_1,weight=cement_m_1, point = 30)
+
+aerator_1 = BLINK(enable=plc.AUGER_ON_1,q = plc.AERATOR_ON_1 )
+aerator_2 = BLINK(enable=plc.AUGER_ON_2,q = plc.AERATOR_ON_2 )
+aerator_3 = BLINK(enable=plc.AUGER_ON_3,q = plc.AERATOR_ON_3 )
 
 cement_m_2 = Weight(raw = plc.CEMENT_M_2, mmax=1500)
 silage_3 = Container( m = lambda: cement_m_2.m, out = plc.AUGER_ON_3, closed = ~plc.AUGER_ON_3,max_sp=1000,lock=Lock(key=plc.DCEMENT_OPEN_2) )
@@ -92,7 +97,7 @@ manager_1 = Manager(collected=ready_1,loaded = loaded_1, mixer = mixer_1, dosato
 
 factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additions_1,mcontainer_1,conveyor_1,water_1]]
 factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ]
-instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2]
+instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2,aerator_1,aerator_2,aerator_3]
 
 if sys.platform=='linux':
   if sys.platform=='linux':
@@ -125,7 +130,7 @@ if sys.platform=='linux':
   iadditions_m_1 = iWEIGHT(speed=50, loading = plc.APUMP_ON_1, unloading = plc.DADDITIONS_OPEN_1, q = plc.ADDITIONS_M_1 )
   ifillers_m_1 = iWEIGHT( speed=100,loading=lambda: plc.FILLER_OPEN_1 or plc.FILLER_OPEN_2 or plc.FILLER_OPEN_3,unloading=plc.CONVEYOR_ON_1, q = plc.CONVEYOR_M_1 )
   
-  iwater_q_1 = iROTARYFLOW( loading=plc.WATER_OPEN_1, clk = plc.WATER_CLK_1, q = plc.WATER_Q_1 )
+  iwater_q_1 = iROTARYFLOW( loading=plc.WATER_OPEN_1, clk = plc.WATER_Q_1, q = plc.WATER_OPEN_1)
   
   irconveyor_2 = iMOTOR(simple=True,on = plc.RCONVEYOR_ON_1,ison = plc.RCONVEYOR_ISON_1 )
   ifconveyor_2 = iMOTOR(simple=True,on = plc.FCONVEYOR_ON_1,ison = plc.FCONVEYOR_ISON_1 )
