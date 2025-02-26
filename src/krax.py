@@ -10,8 +10,9 @@ import sys
 
 print(f'Запуск проекта {project_name}')
 
-def plc_prg():
-  board.run = not board.run
+# board.run = True
+# def plc_prg():
+#   board.run = not board.run
 
 factory_1 = Factory( )
 
@@ -27,7 +28,7 @@ cement_2 = Dosator( m = lambda:  cement_m_2.m, closed = plc.DCEMENT_CLOSED_2, ou
 dc_vibrator_2 = UnloadHelper( q = plc.DC_VIBRATOR_ON_2,dosator=cement_2, weight= cement_m_2, point = 30)
 
 # water_1   = FlowMeter( out=plc.WATER_OPEN_1, closed = ~plc.WATER_OPEN_1,clk=plc.WATER_CLK_1 )
-water_1 = Vodoley(out = plc.WATER_OPEN_1, clk = plc.WATER_CLK_1, humidity= plc.HUMIDITY_1 )
+water_1 = Vodoley(out = plc.WATER_OPEN_1, clk = plc.WATER_Q_1, humidity= plc.HUMIDITY_1 )
 
 additions_m_1 = Weight(raw = plc.ADDITIONS_M_1,mmax=50)
 addition_1 = Container( m = lambda:  additions_m_1.m,out = plc.APUMP_ON_1, closed = ~plc.APUMP_ON_1,max_sp=30,lock=Lock(key=plc.DADDITIONS_OPEN_1) )
@@ -90,8 +91,8 @@ loaded_1 = Loaded( [cement_1,cement_2,additions_1,mcontainer_1,water_1] )    #в
 manager_1 = Manager(collected=ready_1,loaded = loaded_1, mixer = mixer_1, dosators=[cement_1,cement_2, additions_1, mcontainer_1] )
 
 factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additions_1,mcontainer_1,conveyor_1,water_1]]
-factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1] ]
-instances = [plc_prg,motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2]
+factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ]
+instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2]
 
 if sys.platform=='linux':
   if sys.platform=='linux':
