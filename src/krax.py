@@ -146,5 +146,5 @@ if sys.platform=='linux':
   imitations = [ imotor_1,idcement_1,idcement_2,idadditions_1,iauger_1,iauger_2,iauger_3,iapump_1,iconveyor_1,itconveyor_1,ifiller_1,ifiller_2,ifiller_3,igate_1,igate_2,icement_m_1,icement_m_2,iadditions_m_1,ifillers_m_1,iwater_q_1,ifconveyor_2,irconveyor_2,imcontainer_1,ihumidity_1 ]
   instances += imitations 
 
-# plc.config( ctx=globals() )
+# plc.config( ctx=globals() ) # так нельзя. из plc.run вызывается, приводит к проблемама с backup/restore eeprom если есть +/- persistable var
 plc.run( instances= instances, ctx=globals() )
