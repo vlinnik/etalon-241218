@@ -2399,6 +2399,12 @@ QCheckBox::checked
             <property name="suffix">
              <string> л/%</string>
             </property>
+            <property name="maximum">
+             <double>100.000000000000000</double>
+            </property>
+            <property name="singleStep">
+             <double>0.010000000000000</double>
+            </property>
            </widget>
           </item>
          </layout>
@@ -2965,13 +2971,13 @@ QCheckBox::checked
   <customwidget>
    <class>Animation</class>
    <extends>QLabel</extends>
-   <header>animation</header>
+   <header>animation.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>RuntimeTrend</class>
    <extends>QWidget</extends>
-   <header>runtimetrend</header>
+   <header>runtimetrend.h</header>
   </customwidget>
  </customwidgets>
  <resources>

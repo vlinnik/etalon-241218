@@ -1,29 +1,27 @@
 from setuptools import setup, find_packages
-from AnyQt.QtCore import QLibraryInfo
-import os
+from setuptools_scm import get_version
 
 setup(
     name="etalon_241218",
-    version="0.1.0",
+    # version=get_version(),
     packages=find_packages(where='.'),
     install_requires=[
         # Список зависимостей вашего проекта, например:
         'PythonQwt',
         'AnyQt',
         'sqlalchemy',
-        'git-versioner'
     ],
     entry_points={
-        'console_scripts': [
+        'gui_scripts': [
             # Примеры:
             # 'имя-скрипта=модуль:функция',
-            'etalon_241218=gui:main',
+            'etalon-241218=gui.__main__:main',
         ],
     },
     data_files=[
         ('', ['concrete6.dat','default.scada','SCADA.rcc']),
         ('ui',['ui/Home.ui','ui/Extensions.ui']),
-        ('modules', ['/usr/lib/x86_64-linux-gnu/qt5/plugins/SCADA/modules/libconcrete6.so'])
+        # ('modules', ['/usr/lib/x86_64-linux-gnu/qt5/plugins/SCADA/modules/libconcrete6.so'])
     ],   
     author="Vasiliy Linnik",
     author_email="vlinnik@mail.ru",
@@ -37,4 +35,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
+    use_scm_version=True,
 )

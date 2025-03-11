@@ -1,11 +1,11 @@
-#!/usr/bin/env xdg-open
-
 [Desktop Entry]
-Version=1.0
-Type=Application
-Terminal=false
-Exec=/usr/local/etalon-241218/etalon-241218
+Exec=etalon-241218
 Name=ETALON-241218
-Comment=АСУ БСУ ETALON-241218
+Type=Application
 Icon=etalon-241218
-Path=
+Version=1.0
+Terminal=false
+Comment=АСУ БСУ ETALON-241218
+Path=/usr/share/etalon_241218
+StartupNotify=true
+

@@ -2,7 +2,7 @@ import os,sys
 if getattr(sys, 'frozen', False):
     os.chdir(sys._MEIPASS)
 
-from .pysca import app,PYPLC
+from pysca import app,PYPLC
 
 try:
     from  . import navbar
@@ -32,25 +32,31 @@ def make_tooltip(*args):
     
     return "Here should be an tooltip"
 
-Home = app.window('ui/Home.ui',ctx={"make_tooltip":make_tooltip})
+def main():
+    Home = app.window('ui/Home.ui',ctx={"make_tooltip":make_tooltip})
 
-navbar.append( Home )
-navbar.tools( app.window('ui/Extensions.ui'))
+    navbar.append( Home )
+    navbar.tools( app.window('ui/Extensions.ui'))
 
-concrete6.setContainerPanels( [Home.cpanel_0,Home.cpanel_1,Home.cpanel_2,Home.cpanel_4,Home.cpanel_3,Home.cpanel_5,Home.cpanel_6,Home.cpanel_7] )
-concrete6.setMainWindow(navbar.instance)
-app.object(concrete6.instance)
+    concrete6.setContainerPanels( [Home.cpanel_0,Home.cpanel_1,Home.cpanel_2,Home.cpanel_4,Home.cpanel_3,Home.cpanel_5,Home.cpanel_6,Home.cpanel_7] )
+    concrete6.setMainWindow(navbar.instance)
+    app.object(concrete6.instance)
 
-navbar.instance.show( )
-        
-dev = PYPLC('192.168.2.10')
-app.devices['${PLC}'] = dev
-dev.start(100)
+    navbar.instance.setWindowTitle(Home.windowTitle())
+    navbar.instance.setWindowIcon(Home.windowIcon())
+    navbar.instance.show( )
+            
+    dev = PYPLC('192.168.2.10')
+    app.devices['${PLC}'] = dev
+    dev.start(100)
 
-app.start( ctx = globals() )
+    app.start( ctx = globals() )
 
-dev.stop( )
+    dev.stop( )
 
-concrete6.cleanup( )
+    concrete6.cleanup( )
 
 # logic.terminate( )
+
+if __name__=='__main__':
+    main( )

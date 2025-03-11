@@ -9,3 +9,8 @@ persist.dat
 persist.json
 concrete6.dat
 etalon_241218.egg-info
+debian/python*
+.debhelper
+debian/debhelper-build-stamp
+.pybuild
+*.build

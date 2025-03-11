@@ -9,3 +9,4 @@ if current_dir not in sys.path:
     sys.path.append(current_dir)
 
 # Теперь можно импортировать модули из этого каталога
+# os.chdir(os.path.expanduser('~/.local'))
