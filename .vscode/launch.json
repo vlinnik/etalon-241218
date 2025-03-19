@@ -27,7 +27,7 @@
             "args": [
                 "-w",
                 "${workspaceFolder}",
-                "--device","127.0.0.1"
+                "--device","192.168.4.1"
             ],
             "justMyCode": false
         }

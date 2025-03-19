@@ -97,7 +97,16 @@ QLabel[style='sys']
 {
 	background-color: rgb(94, 92, 100);
 	border: 1px solid gray;
-}</string>
+}
+QLabel[style=&quot;danger&quot;]
+{
+	border: 1px solid red;
+	background-color: rgb(80,0,0);
+	color: white;
+	border-radius: 4px;
+	font-size: 16pt;
+}
+</string>
   </property>
   <widget class="DosatorPanel" name="dpanel_0">
    <property name="geometry">
@@ -1677,19 +1686,24 @@ QPushButton:checked
    <property name="geometry">
     <rect>
      <x>701</x>
-     <y>710</y>
-     <width>191</width>
-     <height>31</height>
+     <y>706</y>
+     <width>197</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">QCheckBox::unchecked
 {
+	padding: 4px;
 	color: lightGray;
 }
 QCheckBox::checked
 {
-	color: yellow;
+	padding: 4px;
+	background-color: red;
+	border: 1px solid gray;
+	border-radius: 4px;
+	color: black;
 }</string>
    </property>
    <property name="text">
@@ -2856,6 +2870,57 @@ QCheckBox::checked
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QLabel" name="hint_2">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>535</y>
+     <width>25</width>
+     <height>53</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>2</string>
+   </property>
+   <property name="style" stdset="0">
+    <string>gigantic</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="hint_4">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>535</y>
+     <width>25</width>
+     <height>53</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>1</string>
+   </property>
+   <property name="style" stdset="0">
+    <string>gigantic</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="air_low">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>509</y>
+     <width>261</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>ВОЗДУХ</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="style" stdset="0">
+    <string>danger</string>
+   </property>
+  </widget>
   <zorder>rttrend_0</zorder>
   <zorder>vodoley_sts</zorder>
   <zorder>mcontainer_1</zorder>
@@ -2937,6 +3002,9 @@ QCheckBox::checked
   <zorder>powered</zorder>
   <zorder>ack_1</zorder>
   <zorder>ack_2</zorder>
+  <zorder>hint_2</zorder>
+  <zorder>hint_4</zorder>
+  <zorder>air_low</zorder>
  </widget>
  <customwidgets>
   <customwidget>
