@@ -137,7 +137,7 @@ if sys.platform=='linux':
   iadditions_m_1 = iWEIGHT(speed=50, loading = plc.APUMP_ON_1, unloading = plc.DADDITIONS_OPEN_1, q = plc.ADDITIONS_M_1 )
   ifillers_m_1 = iWEIGHT( speed=100,loading=lambda: plc.FILLER_OPEN_1 or plc.FILLER_OPEN_2 or plc.FILLER_OPEN_3,unloading=plc.CONVEYOR_ON_1, q = plc.CONVEYOR_M_1 )
   
-  iwater_q_1 = iROTARYFLOW( loading=plc.WATER_OPEN_1, clk = plc.WATER_Q_1, q = plc.WATER_OPEN_1)
+  iwater_q_1 = iROTARYFLOW( loading=plc.WATER_OPEN_1, clk = plc.WATER_Q_1)
   
   irconveyor_2 = iMOTOR(simple=True,on = plc.RCONVEYOR_ON_1,ison = plc.RCONVEYOR_ISON_1 )
   ifconveyor_2 = iMOTOR(simple=True,on = plc.FCONVEYOR_ON_1,ison = plc.FCONVEYOR_ISON_1 )
