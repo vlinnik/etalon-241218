@@ -26,7 +26,8 @@
             },
             "args": [
                 "-w",
-                "${workspaceFolder}"
+                "${workspaceFolder}",
+                "--device","127.0.0.1"
             ],
             "justMyCode": false
         }

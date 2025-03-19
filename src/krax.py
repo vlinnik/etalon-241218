@@ -6,6 +6,7 @@ from concrete.msgate import MPGate,GRGate
 from concrete.dosator import ManualDosator
 from concrete.vibrator import Vibrator,UnloadHelper
 from concrete.vodoley import Vodoley
+from concrete.motor import MotorST
 from pyplc.utils.misc import BLINK
 from pyplc.utils.latch import RS
 import sys
@@ -52,11 +53,11 @@ tconveyor_1 = Transport( ison = plc.TCONVEYOR_ISON_1, power = plc.TCONVEYOR_ON_1
 conveyor_1 = Dosator( m= lambda: fillers_m_1.m, closed = ~plc.CONVEYOR_ON_1, out = tconveyor_1.set_auto, containers=[filler_1,filler_2,filler_3],lock=Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_2 or not plc.FILLER_CLOSED_3) )
 mcontainer_1 = ManualDosator(level = plc.MCONTAINER_LEVEL_1, closed = plc.MCONTAINER_CLOSED_1,out = plc.MCONTAINER_OPEN_1, lock = ~plc.MIXER_ISON_1,dosator=conveyor_1, helper = plc.MC_VIBRATOR_ON_1 )
 
-motor_1 = Motor( ison=plc.MIXER_ISON_1,powered=plc.MIXER_ON_1)
-gate_1 = MSGate( closed=plc.MIXER_CLOSED_1, opened=plc.MIXER_OPENED_1)
+motor_1 = MotorST( ison=plc.MIXER_ISON_1,powered=plc.MIXER_ON_1)
+gate_1 = MPGate( closed=plc.MIXER_CLOSED_1, opened=plc.MIXER_OPENED_1,close=plc.MIXER_CLOSE_1)
 gate_2 = MPGate( closed=plc.MIXER_CLOSED_2, opened=plc.MIXER_OPENED_2,close=plc.MIXER_CLOSE_2)
 gates = GRGate(gates=[gate_1,gate_2])
-mixer_1 = Mixer(gate = gates ,motor=motor_1, flows=[ c.q for c in [silage_1,silage_2,silage_3,water_1,addition_1]] + [e.q for e in mcontainer_1.expenses])
+mixer_1 = Mixer(gate = gates ,motor=motor_1, use_ack=False, flows=[ c.q for c in [silage_1,silage_2,silage_3,water_1,addition_1]] + [e.q for e in mcontainer_1.expenses])
 
 def toggle_breakpoint(x:bool):
   mixer_1.breakpoint = x
@@ -128,7 +129,7 @@ if sys.platform=='linux':
   ifiller_1 = iVALVE(open = plc.FILLER_OPEN_1,closed=plc.FILLER_CLOSED_1)
   ifiller_2 = iVALVE(open = plc.FILLER_OPEN_2,closed=plc.FILLER_CLOSED_2)
   ifiller_3 = iVALVE(open = plc.FILLER_OPEN_3,closed=plc.FILLER_CLOSED_3)
-  igate_1 = iGATE(simple=True,open = plc.MIXER_OPEN_1, closed=plc.MIXER_CLOSED_1,opened=plc.MIXER_OPENED_1)
+  igate_1 = iGATE(open = plc.MIXER_OPEN_1, close=plc.MIXER_CLOSE_1, closed = plc.MIXER_CLOSED_1,opened = plc.MIXER_OPENED_1)
   igate_2 = iGATE(open = plc.MIXER_OPEN_2, close=plc.MIXER_CLOSE_2, opened = plc.MIXER_OPENED_2,closed = plc.MIXER_CLOSED_2)
   
   icement_m_1 = iWEIGHT( loading=lambda: plc.AUGER_ON_1 or plc.AUGER_ON_2, unloading=plc.DCEMENT_OPEN_1, q = plc.CEMENT_M_1 ,speed=100)
@@ -145,6 +146,16 @@ if sys.platform=='linux':
   
   imitations = [ imotor_1,idcement_1,idcement_2,idadditions_1,iauger_1,iauger_2,iauger_3,iapump_1,iconveyor_1,itconveyor_1,ifiller_1,ifiller_2,ifiller_3,igate_1,igate_2,icement_m_1,icement_m_2,iadditions_m_1,ifillers_m_1,iwater_q_1,ifconveyor_2,irconveyor_2,imcontainer_1,ihumidity_1 ]
   instances += imitations 
+
+
+# def check(q: bool):
+#   if not q: return
+#   print(f'do power ack: {factory_1.powered}')
+#   factory_1.powerack = True
+#   print('reboot by watchdog')
+#   from machine import WDT; WDT()
+  
+# test_nvram = TON(clk = True,pt=2000,q=check); instances.append(test_nvram)
 
 # plc.config( ctx=globals() ) # так нельзя. из plc.run вызывается, приводит к проблемама с backup/restore eeprom если есть +/- persistable var
 plc.run( instances= instances, ctx=globals() )

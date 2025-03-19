@@ -14,9 +14,6 @@ except:
 from AnyQt.QtWidgets import QApplication
 from AnyQt.QtGui import QIcon
 
-# import subprocess
-# logic = subprocess.Popen(["python", "src/krax.py"])
-
 def make_tooltip(*args):
     try:
         n = 0
@@ -33,6 +30,13 @@ def make_tooltip(*args):
     return "Here should be an tooltip"
 
 def main():
+    # import subprocess
+    # logic = subprocess.Popen(["python3", "src/krax.py"])
+    
+    import argparse
+    args = argparse.ArgumentParser(sys.argv)
+    args.add_argument('--device', action='store', type=str, default='192.168.2.10', help='IP address of the device')
+    ns = args.parse_known_args()[0]
     Home = app.window('ui/Home.ui',ctx={"make_tooltip":make_tooltip})
 
     navbar.append( Home )
@@ -46,7 +50,7 @@ def main():
     navbar.instance.setWindowIcon(Home.windowIcon())
     navbar.instance.show( )
             
-    dev = PYPLC('192.168.2.10')
+    dev = PYPLC(ns.device)
     app.devices['${PLC}'] = dev
     dev.start(100)
 
@@ -56,7 +60,7 @@ def main():
 
     concrete6.cleanup( )
 
-# logic.terminate( )
+    # logic.terminate( )
 
 if __name__=='__main__':
     main( )
