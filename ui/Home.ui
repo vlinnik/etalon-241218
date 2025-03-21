@@ -630,8 +630,8 @@ QLabel[style=&quot;danger&quot;]
   <widget class="Animation" name="tconveyor_0">
    <property name="geometry">
     <rect>
-     <x>601</x>
-     <y>700</y>
+     <x>760</x>
+     <y>690</y>
      <width>392</width>
      <height>54</height>
     </rect>
@@ -640,6 +640,12 @@ QLabel[style=&quot;danger&quot;]
     <url>
      <string>qrc:/SCADA/conveyor.mng</string>
     </url>
+   </property>
+   <property name="running">
+    <bool>false</bool>
+   </property>
+   <property name="playbackHints">
+    <set>Animation::Reversed</set>
    </property>
   </widget>
   <widget class="QLabel" name="mclosed_1">
@@ -1612,8 +1618,8 @@ QPushButton:checked
   <widget class="QLabel" name="left">
    <property name="geometry">
     <rect>
-     <x>661</x>
-     <y>710</y>
+     <x>820</x>
+     <y>700</y>
      <width>32</width>
      <height>32</height>
     </rect>
@@ -1628,8 +1634,8 @@ QPushButton:checked
   <widget class="QLabel" name="right">
    <property name="geometry">
     <rect>
-     <x>901</x>
-     <y>710</y>
+     <x>1060</x>
+     <y>700</y>
      <width>32</width>
      <height>32</height>
     </rect>
@@ -1685,8 +1691,8 @@ QPushButton:checked
   <widget class="QCheckBox" name="select_mixer">
    <property name="geometry">
     <rect>
-     <x>701</x>
-     <y>706</y>
+     <x>710</x>
+     <y>740</y>
      <width>197</width>
      <height>41</height>
     </rect>
@@ -1807,7 +1813,7 @@ QCheckBox::checked
    <property name="depth">
     <number>1200</number>
    </property>
-   <property name="canvasBackground">
+   <property name="canvasBackground" stdset="0">
     <brush brushstyle="SolidPattern">
      <color alpha="255">
       <red>61</red>
@@ -2921,6 +2927,9 @@ QCheckBox::checked
     <string>danger</string>
    </property>
   </widget>
+  <zorder>tconveyor_0</zorder>
+  <zorder>left</zorder>
+  <zorder>right</zorder>
   <zorder>rttrend_0</zorder>
   <zorder>vodoley_sts</zorder>
   <zorder>mcontainer_1</zorder>
@@ -2956,7 +2965,6 @@ QCheckBox::checked
   <zorder>cpanel_7</zorder>
   <zorder>cpanel_6</zorder>
   <zorder>cpanel_5</zorder>
-  <zorder>tconveyor_0</zorder>
   <zorder>mclosed_1</zorder>
   <zorder>mclosed_2</zorder>
   <zorder>dopen_0</zorder>
@@ -2991,12 +2999,9 @@ QCheckBox::checked
   <zorder>pushButton</zorder>
   <zorder>pushButton_2</zorder>
   <zorder>water_sp</zorder>
-  <zorder>left</zorder>
-  <zorder>right</zorder>
   <zorder>clock_0</zorder>
   <zorder>mixer_status</zorder>
   <zorder>select_mixer</zorder>
-  <zorder>tconveyorpanelex</zorder>
   <zorder>vodoley_ctl</zorder>
   <zorder>scantime</zorder>
   <zorder>powered</zorder>
@@ -3005,6 +3010,7 @@ QCheckBox::checked
   <zorder>hint_2</zorder>
   <zorder>hint_4</zorder>
   <zorder>air_low</zorder>
+  <zorder>tconveyorpanelex</zorder>
  </widget>
  <customwidgets>
   <customwidget>
@@ -3034,6 +3040,12 @@ QCheckBox::checked
    <header>concreteui.mixerpanel</header>
   </customwidget>
   <customwidget>
+   <class>MContainerPanel</class>
+   <extends>QGroupBox</extends>
+   <header>concreteui.mcontainerpanel</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>Animation</class>
    <extends>QLabel</extends>
    <header>pygui.animation</header>
@@ -3041,14 +3053,13 @@ QCheckBox::checked
   </customwidget>
   <customwidget>
    <class>RuntimeTrend</class>
-   <extends>QWidget</extends>
+   <extends>QwtPlot</extends>
    <header>pygui.runtimetrend</header>
   </customwidget>
   <customwidget>
-   <class>MContainerPanel</class>
-   <extends>QGroupBox</extends>
-   <header>concreteui/mcontainerpanel.h</header>
-   <container>1</container>
+   <class>QwtPlot</class>
+   <extends>QFrame</extends>
+   <header>qwt_plot.h</header>
   </customwidget>
  </customwidgets>
  <resources>

@@ -1,7 +1,7 @@
-from pyplc.config import plc,board
+from pyplc.config import plc
 from project import name as project_name
 from concrete.imitation import iMOTOR,iVALVE,iGATE,iWEIGHT,iROTARYFLOW
-from concrete import Motor,MSGate,Transport,Dosator,Weight,Container,FlowMeter,Manager,Readiness,Loaded,Mixer,Factory,Lock
+from concrete import Transport,Dosator,Weight,Container,Manager,Readiness,Loaded,Mixer,Factory,Lock
 from concrete.msgate import MPGate,GRGate
 from concrete.dosator import ManualDosator
 from concrete.vibrator import Vibrator,UnloadHelper
@@ -12,10 +12,6 @@ from pyplc.utils.latch import RS
 import sys
 
 print(f'Запуск проекта {project_name}')
-
-# board.run = True
-# def plc_prg():
-#   board.run = not board.run
 
 factory_1 = Factory( )
 
@@ -54,10 +50,25 @@ conveyor_1 = Dosator( m= lambda: fillers_m_1.m, closed = ~plc.CONVEYOR_ON_1, out
 mcontainer_1 = ManualDosator(level = plc.MCONTAINER_LEVEL_1, closed = plc.MCONTAINER_CLOSED_1,out = plc.MCONTAINER_OPEN_1, lock = ~plc.MIXER_ISON_1,dosator=conveyor_1, helper = plc.MC_VIBRATOR_ON_1 )
 
 motor_1 = MotorST( ison=plc.MIXER_ISON_1,powered=plc.MIXER_ON_1)
-gate_1 = MPGate( closed=plc.MIXER_CLOSED_1, opened=plc.MIXER_OPENED_1,close=plc.MIXER_CLOSE_1)
-gate_2 = MPGate( closed=plc.MIXER_CLOSED_2, opened=plc.MIXER_OPENED_2,close=plc.MIXER_CLOSE_2)
+
+def mixer_open_2(cmd: bool):
+  plc.MIXER_OPEN_2 = cmd and not plc.MIXER_OPENED_2
+
+def mixer_close_2(cmd: bool):
+  plc.MIXER_CLOSE_2 = cmd and not plc.MIXER_CLOSED_2
+  
+def protect_gate_2():
+  if plc.MIXER_CLOSED_2 and plc.MIXER_CLOSE_2:
+    plc.MIXER_CLOSE_2 = False
+  if plc.MIXER_OPENED_2 and plc.MIXER_OPEN_2:
+    plc.MIXER_OPEN_2 = False
+  
+# историчиски сложилось что на заводе первый затвор это gate_2 тут...
+gate_1 = MPGate( closed=plc.MIXER_CLOSED_1, opened=plc.MIXER_OPENED_1,close=plc.MIXER_CLOSE_1,open=plc.MIXER_OPEN_1)
+gate_2 = MPGate( closed=plc.MIXER_CLOSED_2, opened=plc.MIXER_OPENED_2,close=mixer_close_2)
 gates = GRGate(gates=[gate_1,gate_2])
 mixer_1 = Mixer(gate = gates ,motor=motor_1, use_ack=False, flows=[ c.q for c in [silage_1,silage_2,silage_3,water_1,addition_1]] + [e.q for e in mcontainer_1.expenses])
+gate_2.export("reverse",bool(False)) #добавим пользовательский атрибут включать реверс конвейера
 
 def toggle_breakpoint(x:bool):
   mixer_1.breakpoint = x
@@ -74,29 +85,16 @@ def power_tconveyor_2(on:bool):
   Args:
       on (bool): комманда ВКЛЮЧИТЬ. 
   """
-  if gates.select==0: 
+  if gate_2.reverse!=0: 
     plc.RCONVEYOR_ON_1 = on
     plc.FCONVEYOR_ON_1 = False
   else:
     plc.FCONVEYOR_ON_1 = on
     plc.RCONVEYOR_ON_1 = False
     
-def gates_open(on: bool):
-  """Комманда ОТКРЫТЬ ЗАТВОР блокируется для не выбранного затвора. Транспортный конвейер
-
-  Args:
-      on (bool): Комманда ОТКРЫТЬ для выбранного затвора
-  """
-  if gates.select==0:
-    plc.MIXER_OPEN_1 = on
-    plc.MIXER_OPEN_2 = False
-  else:
-    plc.MIXER_OPEN_2 = on
-    plc.MIXER_OPEN_1 = False
-
-tconveyor_2 = Transport(ison=lambda: plc.RCONVEYOR_ISON_1 or plc.FCONVEYOR_ISON_1, power = power_tconveyor_2, out=gates_open,hold_on=lambda: not plc.MIXER_CLOSED_1 or not plc.MIXER_CLOSED_2 )
+tconveyor_2 = Transport(ison=lambda: plc.RCONVEYOR_ISON_1 or plc.FCONVEYOR_ISON_1, power = power_tconveyor_2, out=mixer_open_2, hold_on=~plc.MIXER_CLOSED_2 )
     
-gates.bind('open',tconveyor_2.set_auto)
+gate_2.bind('open',tconveyor_2.set_auto)
 
 ready_1 = Readiness( [cement_1,cement_2,additions_1,mcontainer_1] )          #для замеса набрано все необходимое
 loaded_1 = Loaded( [cement_1,cement_2,additions_1,mcontainer_1,water_1] )    #все необходимое загружено в смеситель
@@ -104,17 +102,17 @@ manager_1 = Manager(collected=ready_1,loaded = loaded_1, mixer = mixer_1, dosato
 
 factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additions_1,mcontainer_1,conveyor_1,water_1]]
 factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ]
-instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2,aerator_1,aerator_2,aerator_3,forbid_1]
+instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2,aerator_1,aerator_2,aerator_3,forbid_1,protect_gate_2]
 
-if sys.platform=='linux':
-  if sys.platform=='linux':
-    import argparse
-    args = argparse.ArgumentParser(sys.argv)
-    args.add_argument('--exports',action='store_true')
-    ns = args.parse_args()
-    if ns.exports:
-      exports(ctx=globals())
-      sys.exit(0)
+if sys.platform=='linux' or True:
+  # if sys.platform=='linux':
+  #   import argparse
+  #   args = argparse.ArgumentParser(sys.argv)
+  #   args.add_argument('--exports',action='store_true')
+  #   ns = args.parse_args()
+  #   if ns.exports:
+  #     exports(ctx=globals())
+  #     sys.exit(0)
   
   imotor_1 = iMOTOR(simple = True, on = plc.MIXER_ON_1,ison = plc.MIXER_ISON_1)
   idcement_1 = iVALVE(open = plc.DCEMENT_OPEN_1, closed=plc.DCEMENT_CLOSED_1)
@@ -147,15 +145,5 @@ if sys.platform=='linux':
   imitations = [ imotor_1,idcement_1,idcement_2,idadditions_1,iauger_1,iauger_2,iauger_3,iapump_1,iconveyor_1,itconveyor_1,ifiller_1,ifiller_2,ifiller_3,igate_1,igate_2,icement_m_1,icement_m_2,iadditions_m_1,ifillers_m_1,iwater_q_1,ifconveyor_2,irconveyor_2,imcontainer_1,ihumidity_1 ]
   instances += imitations 
 
-
-# def check(q: bool):
-#   if not q: return
-#   print(f'do power ack: {factory_1.powered}')
-#   factory_1.powerack = True
-#   print('reboot by watchdog')
-#   from machine import WDT; WDT()
-  
-# test_nvram = TON(clk = True,pt=2000,q=check); instances.append(test_nvram)
-
-# plc.config( ctx=globals() ) # так нельзя. из plc.run вызывается, приводит к проблемама с backup/restore eeprom если есть +/- persistable var
+plc.config(ctx=globals())
 plc.run( instances= instances, ctx=globals() )
