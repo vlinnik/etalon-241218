@@ -7,6 +7,7 @@ from concrete.dosator import ManualDosator
 from concrete.vibrator import Vibrator,UnloadHelper
 from concrete.vodoley import Vodoley
 from concrete.motor import MotorST
+from concrete.container import Retarder
 from pyplc.utils.misc import BLINK
 from pyplc.utils.latch import RS
 import sys
@@ -38,9 +39,10 @@ addition_1 = Container( m = lambda:  additions_m_1.m,out = plc.APUMP_ON_1, close
 additions_1 = Dosator(m = lambda:  additions_m_1.m, out=plc.DADDITIONS_OPEN_1, containers=[addition_1],lock = Lock(key=plc.APUMP_ON_1) )
 
 fillers_m_1 = Weight( raw = plc.CONVEYOR_M_1, mmax = 8000)
-filler_1 = Container(m = lambda:  fillers_m_1.m, out = plc.FILLER_OPEN_1, closed=plc.FILLER_CLOSED_1, lock = Lock(key=lambda: not plc.FILLER_CLOSED_2 or not plc.FILLER_CLOSED_3 or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
-filler_2 = Container(m = lambda:  fillers_m_1.m, out = plc.FILLER_OPEN_2, closed=plc.FILLER_CLOSED_2, lock = Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_3 or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
-filler_3 = Container(m = lambda:  fillers_m_1.m, out = plc.FILLER_OPEN_3, closed=plc.FILLER_CLOSED_3, lock = Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_2 or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
+retarder_1 = Retarder( m=lambda:  fillers_m_1.m, outs=(plc.FILLER_OPEN_1,plc.FILLER_OPEN_2,plc.FILLER_OPEN_3),sts=(plc.FILLER_CLOSED_1,plc.FILLER_CLOSED_2,plc.FILLER_CLOSED_3)) 
+filler_1 = Container(m = lambda:  fillers_m_1.m, out = retarder_1.out(0), closed=retarder_1.closed(0), lock = Lock(key=lambda: retarder_1.lock(0) or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
+filler_2 = Container(m = lambda:  fillers_m_1.m, out = retarder_1.out(1), closed=retarder_1.closed(1), lock = Lock(key=lambda: retarder_1.lock(1) or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
+filler_3 = Container(m = lambda:  fillers_m_1.m, out = retarder_1.out(2), closed=retarder_1.closed(2), lock = Lock(key=lambda: retarder_1.lock(2) or plc.CONVEYOR_ON_1 ), max_sp = 3000 )
 vibrator_1 = Vibrator( q = plc.VIBRATOR_ON_1, containers = [plc.FILLER_OPEN_1], weight=fillers_m_1)
 vibrator_2 = Vibrator( q = plc.VIBRATOR_ON_2, containers = [plc.FILLER_OPEN_2], weight=fillers_m_1)
 vibrator_3 = Vibrator( q = plc.VIBRATOR_ON_3, containers = [plc.FILLER_OPEN_3], weight=fillers_m_1)
@@ -67,7 +69,7 @@ def protect_gate_2():
 gate_1 = MPGate( closed=plc.MIXER_CLOSED_1, opened=plc.MIXER_OPENED_1,close=plc.MIXER_CLOSE_1,open=plc.MIXER_OPEN_1)
 gate_2 = MPGate( closed=plc.MIXER_CLOSED_2, opened=plc.MIXER_OPENED_2,close=mixer_close_2)
 gates = GRGate(gates=[gate_1,gate_2])
-mixer_1 = Mixer(gate = gates ,motor=motor_1, use_ack=False, flows=[ c.q for c in [silage_1,silage_2,silage_3,water_1,addition_1]] + [e.q for e in mcontainer_1.expenses])
+mixer_1 = Mixer(gate = gates ,motor=motor_1, use_ack=False, flows=( c.q for c in [silage_1,silage_2,silage_3,water_1,addition_1]+mcontainer_1.expenses))
 gate_2.export("reverse",bool(False)) #добавим пользовательский атрибут включать реверс конвейера
 
 def toggle_breakpoint(x:bool):
@@ -102,9 +104,12 @@ manager_1 = Manager(collected=ready_1,loaded = loaded_1, mixer = mixer_1, dosato
 
 factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additions_1,mcontainer_1,conveyor_1,water_1]]
 factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ]
-instances = [motor_1,gate_1,gate_2,gates,tconveyor_2, mixer_1,cement_1,silage_1,silage_2,cement_2,silage_3,water_1,additions_1,addition_1,conveyor_1,filler_1,filler_2,filler_3,tconveyor_1,mcontainer_1,manager_1,factory_1,ready_1,loaded_1,cement_m_1,cement_m_2,additions_m_1,fillers_m_1,vibrator_1,vibrator_2,vibrator_3,dc_vibrator_1,dc_vibrator_2,aerator_1,aerator_2,aerator_3,forbid_1,protect_gate_2]
+instances = ( mixer_1,cement_1, silage_1, silage_2, cement_2, silage_3, water_1, additions_1, addition_1, conveyor_1, 
+             filler_1, filler_2, filler_3, tconveyor_1, mcontainer_1, cement_m_1, cement_m_2, additions_m_1, fillers_m_1,
+             manager_1, factory_1, ready_1, loaded_1, vibrator_1, vibrator_2, vibrator_3, dc_vibrator_1, dc_vibrator_2, 
+             aerator_1, aerator_2, aerator_3, forbid_1, protect_gate_2, motor_1, gate_1, gate_2, gates, tconveyor_2,retarder_1)
 
-if sys.platform=='linux' or True:
+if sys.platform=='linux':
   # if sys.platform=='linux':
   #   import argparse
   #   args = argparse.ArgumentParser(sys.argv)
@@ -142,8 +147,7 @@ if sys.platform=='linux' or True:
   imcontainer_1 = iVALVE(open = plc.MCONTAINER_OPEN_1,closed = plc.MCONTAINER_CLOSED_1)
   ihumidity_1 = iWEIGHT( speed = 100,  loading = plc.WATER_OPEN_1, unloading=lambda: gates.unloading,q = plc.HUMIDITY_1 )
   
-  imitations = [ imotor_1,idcement_1,idcement_2,idadditions_1,iauger_1,iauger_2,iauger_3,iapump_1,iconveyor_1,itconveyor_1,ifiller_1,ifiller_2,ifiller_3,igate_1,igate_2,icement_m_1,icement_m_2,iadditions_m_1,ifillers_m_1,iwater_q_1,ifconveyor_2,irconveyor_2,imcontainer_1,ihumidity_1 ]
+  imitations = ( imotor_1,idcement_1,idcement_2,idadditions_1,iauger_1,iauger_2,iauger_3,iapump_1,iconveyor_1,itconveyor_1,ifiller_1,ifiller_2,ifiller_3,igate_1,igate_2,icement_m_1,icement_m_2,iadditions_m_1,ifillers_m_1,iwater_q_1,ifconveyor_2,irconveyor_2,imcontainer_1,ihumidity_1 )
   instances += imitations 
 
-plc.config(ctx=globals())
 plc.run( instances= instances, ctx=globals() )

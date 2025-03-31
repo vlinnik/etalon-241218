@@ -1807,13 +1807,13 @@ QCheckBox::checked
      <x>-4</x>
      <y>70</y>
      <width>471</width>
-     <height>311</height>
+     <height>281</height>
     </rect>
    </property>
    <property name="depth">
     <number>1200</number>
    </property>
-   <property name="canvasBackground" stdset="0">
+   <property name="canvasBackground">
     <brush brushstyle="SolidPattern">
      <color alpha="255">
       <red>61</red>
@@ -1829,7 +1829,7 @@ QCheckBox::checked
      <x>40</x>
      <y>80</y>
      <width>411</width>
-     <height>261</height>
+     <height>221</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout_3">
@@ -2927,6 +2927,54 @@ QCheckBox::checked
     <string>danger</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="disable_1">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>350</y>
+     <width>92</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: lightGray;</string>
+   </property>
+   <property name="text">
+    <string>выкл</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="disable_2">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>350</y>
+     <width>92</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: lightGray;</string>
+   </property>
+   <property name="text">
+    <string>выкл</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="disable_3">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>350</y>
+     <width>92</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: lightGray;</string>
+   </property>
+   <property name="text">
+    <string>выкл</string>
+   </property>
+  </widget>
   <zorder>tconveyor_0</zorder>
   <zorder>left</zorder>
   <zorder>right</zorder>
@@ -3002,7 +3050,6 @@ QCheckBox::checked
   <zorder>clock_0</zorder>
   <zorder>mixer_status</zorder>
   <zorder>select_mixer</zorder>
-  <zorder>vodoley_ctl</zorder>
   <zorder>scantime</zorder>
   <zorder>powered</zorder>
   <zorder>ack_1</zorder>
@@ -3011,6 +3058,10 @@ QCheckBox::checked
   <zorder>hint_4</zorder>
   <zorder>air_low</zorder>
   <zorder>tconveyorpanelex</zorder>
+  <zorder>disable_1</zorder>
+  <zorder>disable_2</zorder>
+  <zorder>disable_3</zorder>
+  <zorder>vodoley_ctl</zorder>
  </widget>
  <customwidgets>
   <customwidget>
