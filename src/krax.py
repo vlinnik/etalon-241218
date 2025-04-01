@@ -75,7 +75,7 @@ gate_2.export("reverse",bool(False)) #добавим пользовательс�
 def toggle_breakpoint(x:bool):
   mixer_1.breakpoint = x
   
-forbid_1 = RS(set = plc.ALLOW_UNLOAD_1,reset=~plc.ALLOW_UNLOAD_1,q = toggle_breakpoint )
+forbid_1 = RS(set = ~plc.ALLOW_UNLOAD_1,reset=plc.ALLOW_UNLOAD_1,q = toggle_breakpoint )
 
 water_1.install_counter( lambda: mixer_1.qreset )
 loaded_2 = Loaded([cement_1,cement_2,additions_1,mcontainer_1])
