@@ -30,7 +30,7 @@
             "args": [
                 "-w",
                 "${workspaceFolder}",
-                "--device","127.0.0.1"
+                "--device","127.0.0.1","--simulator"
             ],
             "justMyCode": false
         }

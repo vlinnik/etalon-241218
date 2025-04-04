@@ -93,8 +93,17 @@ def power_tconveyor_2(on:bool):
   else:
     plc.FCONVEYOR_ON_1 = on
     plc.RCONVEYOR_ON_1 = False
-    
+
 tconveyor_2 = Transport(ison=lambda: plc.RCONVEYOR_ISON_1 or plc.FCONVEYOR_ISON_1, power = power_tconveyor_2, out=mixer_open_2, hold_on=~plc.MIXER_CLOSED_2 )
+
+def emergency(value: bool):
+  if value:
+    power_tconveyor_2(False)
+    plc.MIXER_OPEN_2 = False
+    plc.MIXER_OPEN_1 = False
+    plc.MIXER_CLOSE_1= True
+    plc.MIXER_CLOSE_2= True
+    mixer_1.clock = 0
     
 gate_2.bind('open',tconveyor_2.set_auto)
 
@@ -103,21 +112,13 @@ loaded_1 = Loaded( [cement_1,cement_2,additions_1,mcontainer_1,water_1] )    #в
 manager_1 = Manager(collected=ready_1,loaded = loaded_1, mixer = mixer_1, dosators=[cement_1,cement_2, additions_1, mcontainer_1] )
 
 factory_1.on_mode = [x.switch_mode for x in [conveyor_1,cement_1,cement_2,additions_1,mcontainer_1,conveyor_1,water_1]]
-factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ]
+factory_1.on_emergency = [x.emergency for x in [conveyor_1,cement_1,cement_2,additions_1,mixer_1,mcontainer_1,conveyor_1,water_1,manager_1,gate_1,gate_2] ] + [emergency]
 instances = ( mixer_1,cement_1, silage_1, silage_2, cement_2, silage_3, water_1, additions_1, addition_1, conveyor_1, 
              filler_1, filler_2, filler_3, tconveyor_1, mcontainer_1, cement_m_1, cement_m_2, additions_m_1, fillers_m_1,
              manager_1, factory_1, ready_1, loaded_1, vibrator_1, vibrator_2, vibrator_3, dc_vibrator_1, dc_vibrator_2, 
              aerator_1, aerator_2, aerator_3, forbid_1, protect_gate_2, motor_1, gate_1, gate_2, gates, tconveyor_2,retarder_1)
 
 if sys.platform=='linux':
-  # if sys.platform=='linux':
-  #   import argparse
-  #   args = argparse.ArgumentParser(sys.argv)
-  #   args.add_argument('--exports',action='store_true')
-  #   ns = args.parse_args()
-  #   if ns.exports:
-  #     exports(ctx=globals())
-  #     sys.exit(0)
   
   imotor_1 = iMOTOR(simple = True, on = plc.MIXER_ON_1,ison = plc.MIXER_ISON_1)
   idcement_1 = iVALVE(open = plc.DCEMENT_OPEN_1, closed=plc.DCEMENT_CLOSED_1)

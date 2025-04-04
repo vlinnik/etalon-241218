@@ -36,7 +36,14 @@ def main():
     import argparse
     args = argparse.ArgumentParser(sys.argv)
     args.add_argument('--device', action='store', type=str, default='192.168.2.10', help='IP address of the device')
+    args.add_argument('--simulator', action='store_true', default=False, help='Run PYPLC logic simulator')
+    
     ns = args.parse_known_args()[0]
+
+    if ns.simulator:
+        import subprocess
+        logic = subprocess.Popen(["python3", "src/krax.py"])
+        
     Home = app.window('ui/Home.ui',ctx={"make_tooltip":make_tooltip})
 
     navbar.append( Home )
@@ -60,7 +67,8 @@ def main():
 
     concrete6.cleanup( )
 
-    # logic.terminate( )
+    if ns.simulator:
+        logic.terminate( )
 
 if __name__=='__main__':
     main( )
