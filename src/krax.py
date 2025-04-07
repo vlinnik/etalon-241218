@@ -51,7 +51,7 @@ tconveyor_1 = Transport( ison = plc.TCONVEYOR_ISON_1, power = plc.TCONVEYOR_ON_1
 conveyor_1 = Dosator( m= lambda: fillers_m_1.m, closed = ~plc.CONVEYOR_ON_1, out = tconveyor_1.set_auto, containers=[filler_1,filler_2,filler_3],lock=Lock(key=lambda: not plc.FILLER_CLOSED_1 or not plc.FILLER_CLOSED_2 or not plc.FILLER_CLOSED_3) )
 mcontainer_1 = ManualDosator(level = plc.MCONTAINER_LEVEL_1, closed = plc.MCONTAINER_CLOSED_1,out = plc.MCONTAINER_OPEN_1, lock = ~plc.MIXER_ISON_1,dosator=conveyor_1, helper = plc.MC_VIBRATOR_ON_1 )
 
-motor_1 = MotorST( ison=plc.MIXER_ISON_1,powered=plc.MIXER_ON_1)
+motor_1 = MotorST( ison=plc.MIXER_ISON_1,powered=plc.MIXER_ON_1,heat=7000)
 
 def mixer_open_2(cmd: bool):
   plc.MIXER_OPEN_2 = cmd and not plc.MIXER_OPENED_2
