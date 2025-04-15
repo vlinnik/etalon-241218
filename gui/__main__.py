@@ -5,10 +5,10 @@ if getattr(sys, 'frozen', False):
 from pysca import app,PYPLC
 
 try:
-    from  . import navbar
+    import  pygui.navbar as navbar
     from .concrete6 import concrete6
 except:
-    import navbar
+    import pygui.navbar as navbar
     from concrete6 import concrete6
 
 from AnyQt.QtWidgets import QApplication
@@ -41,6 +41,7 @@ def main():
     ns = args.parse_known_args()[0]
 
     if ns.simulator:
+        ns.device = '127.0.0.1'
         import subprocess
         logic = subprocess.Popen(["python3", "src/krax.py"])
         
