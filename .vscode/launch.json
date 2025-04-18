@@ -19,7 +19,7 @@
             ],
         },
         {
-            "name": "Python Debugger: Module",
+            "name": "Simulator",
             "type": "debugpy",
             "request": "launch",
             "module": "gui",
@@ -33,6 +33,38 @@
                 "--device","127.0.0.1","--simulator"
             ],
             "justMyCode": false
+        },
+        {
+            "name": "Over WiFi",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "gui",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPYCACHEPREFIX": "${workspaceFolder}/__pycache__"
+            },
+            "args": [
+                "-w",
+                "${workspaceFolder}",
+                "--device","192.168.4.1"
+            ],
+            "justMyCode": false
+        },
+        {
+            "name": "Runtime",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "gui",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPYCACHEPREFIX": "${workspaceFolder}/__pycache__"
+            },
+            "args": [
+                "-w",
+                "${workspaceFolder}",
+            ],
+            "justMyCode": false
         }
+
     ]
 }
